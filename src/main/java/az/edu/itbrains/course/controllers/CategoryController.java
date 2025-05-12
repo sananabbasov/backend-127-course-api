@@ -9,6 +9,7 @@ import az.edu.itbrains.course.services.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/getall")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<CategoryDto>> getAll(){
 
         List<CategoryDto> categoryDtoList = categoryService.getCategories();
