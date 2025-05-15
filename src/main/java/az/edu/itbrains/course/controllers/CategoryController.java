@@ -22,7 +22,6 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/getall")
-    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<CategoryDto>> getAll(){
 
         List<CategoryDto> categoryDtoList = categoryService.getCategories();
@@ -31,6 +30,7 @@ public class CategoryController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAnyAuthority(@securityService.privilege('create'))")
     public ResponseEntity<ApiResponse> create(@RequestBody CategoryCreateDto categoryCreateDto){
         ApiResponse response = categoryService.createCategory(categoryCreateDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);

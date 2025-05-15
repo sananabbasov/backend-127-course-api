@@ -64,4 +64,10 @@ public class UserServiceImpl implements UserService {
         userInfoDto.setEmail(findUser.getEmail());
         return userInfoDto;
     }
+
+    @Override
+    public ApiResponse saveRole(User user) {
+        userRepository.save(user);
+        return new ApiResponse("Okay", true);
+    }
 }

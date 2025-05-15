@@ -13,4 +13,5 @@ public interface UserService {
     User findUserByEmail(String username);
 
     UserInfoDto findLoggedUser(String name);
+    ApiResponse saveRole(User user);
 }
